@@ -1,4 +1,22 @@
+import { Filters, PaginationContainer, ProductsContainer } from "../components";
+import { customFetch } from "../utils";
+
+const url = "products/";
+
+export const loader = async ({ request }) => {
+  const res = await customFetch(url);
+  const products = res.data.data;
+  const meta = res.data.meta;
+  return { products, meta };
+};
+
 const Products = () => {
-  return <h1 className="text-4xl">Products</h1>;
+  return (
+    <>
+      <Filters />
+      <ProductsContainer />
+      <PaginationContainer />
+    </>
+  );
 };
 export default Products;
