@@ -4,7 +4,6 @@ import { useState } from "react";
 import { generateAmountOptions } from "../utils";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
-import { QueryClient } from "@tanstack/react-query";
 
 const singleProductQuery = (id) => {
   return {
