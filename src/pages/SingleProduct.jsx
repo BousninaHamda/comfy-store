@@ -4,11 +4,21 @@ import { useState } from "react";
 import { generateAmountOptions } from "../utils";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
+import { QueryClient } from "@tanstack/react-query";
+
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ["singleProduct", id],
+    queryFn: () => customFetch(`/products/${id}`),
+  };
+};
 
 export const loader =
   (queryClient) =>
   async ({ params }) => {
-    const res = await customFetch(`/products/${params.id}`);
+    const res = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
     return { product: res.data.data };
   };
 
