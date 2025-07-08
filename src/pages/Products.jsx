@@ -17,7 +17,7 @@ const allProductsQuery = (queryParams) => {
       shipping ?? false,
       page ?? 1,
     ],
-    queryFn: () => customFetch(url, { params }),
+    queryFn: () => customFetch(url, { params: queryParams }),
   };
 };
 
